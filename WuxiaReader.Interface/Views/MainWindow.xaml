@@ -1,0 +1,82 @@
+﻿<Window x:Class="WuxiaReader.Interface.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:df="clr-namespace:WuxiaReader.DataFetcher;assembly=WuxiaReader.DataFetcher"
+        xmlns:behaviors="clr-namespace:WuxiaReader.Interface.Behaviors"
+        xmlns:viewModels="clr-namespace:WuxiaReader.Interface.ViewModels"
+        xmlns:converters="clr-namespace:WuxiaReader.Interface.Converters"
+        mc:Ignorable="d"
+        Title="Wuxia Reader" Width="800" Height="600">
+    <Window.DataContext>
+        <viewModels:MainViewModel />
+    </Window.DataContext>
+    
+    <Window.InputBindings>
+        <KeyBinding 
+            Key="N"
+            Command="{Binding NextChapterCommand}"
+        />
+        
+        <KeyBinding 
+            Key="B"
+            Command="{Binding PreviousChapterCommand}"
+        />
+        
+        <KeyBinding
+            Key="C"
+            Command="{Binding LoadChapterCommand}"
+            CommandParameter="{Binding CurrentChapter}"
+        />
+    </Window.InputBindings>
+    
+    <ScrollViewer>
+        <StackPanel Orientation="Vertical" Margin="10 0">
+            
+            <!-- For every chapter -->
+            <ItemsControl ItemsSource="{Binding Chapters}" Margin="10">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type df:Chapter}">
+                        
+                        <StackPanel Orientation="Vertical">
+                            
+                            <!-- Each chapter element -->
+                            <ItemsControl ItemsSource="{Binding Elements}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type df:ChapterElement}">
+                                        <StackPanel 
+                                            Orientation="Vertical" 
+                                            Margin="{Binding Spacing, Converter={converters:BottomMarginConverter}}"
+                                        >
+                                            
+                                            <!-- Paragraph -->
+                                            <TextBlock
+                                                TextWrapping="Wrap"
+                                                FontSize="18"
+                                                FontFamily="Maiandra GD"
+                                            >
+                                                <!-- Show every split -->
+                                                <i:Interaction.Behaviors>
+                                                    <behaviors:StylizedTextBehaviour CurrentChapter="{Binding .}"/>
+                                                </i:Interaction.Behaviors>
+                                            </TextBlock>
+                                            
+                                            <Separator 
+                                                Visibility="{ Binding HasSpacerAfter
+                                                            , Converter={converters:VisibilityConverter} }"
+                                            />
+                                            
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ScrollViewer>
+</Window>

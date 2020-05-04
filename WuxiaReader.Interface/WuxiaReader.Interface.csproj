@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ApplicationDefinition Remove="App.xaml" />
+      <ApplicationDefinition Include="Views\App.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </ApplicationDefinition>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" />
+      <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\WuxiaReader.DataFetcher\WuxiaReader.DataFetcher.csproj" />
+    </ItemGroup>
+
+</Project>
