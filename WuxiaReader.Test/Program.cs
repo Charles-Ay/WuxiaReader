@@ -1,5 +1,4 @@
-﻿using System;
-using WuxiaReader.DataFetcher;
+﻿using WuxiaReader.DataFetcher;
 
 namespace WuxiaReader.Test
 {

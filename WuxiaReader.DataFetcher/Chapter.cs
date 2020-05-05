@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using JetBrains.Annotations;
 
 namespace WuxiaReader.DataFetcher
 {
