@@ -8,6 +8,14 @@
         xmlns:behaviors="clr-namespace:WuxiaReader.Interface.Behaviors"
         xmlns:viewModels="clr-namespace:WuxiaReader.Interface.ViewModels"
         xmlns:converters="clr-namespace:WuxiaReader.Interface.Converters"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="18"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d"
         Title="Wuxia Reader" Width="800" Height="600">
     <Window.DataContext>
@@ -29,6 +37,18 @@
             Key="C"
             Command="{Binding LoadChapterCommand}"
             CommandParameter="{Binding CurrentChapter}"
+        />
+        
+        <KeyBinding
+            Key="L"
+            Command="{Binding SetBaseTheme}"
+            CommandParameter="{x:Static materialDesign:Theme.Light}"
+        />
+        
+        <KeyBinding
+            Key="D"
+            Command="{Binding SetBaseTheme}"
+            CommandParameter="{x:Static materialDesign:Theme.Dark}"
         />
     </Window.InputBindings>
     
@@ -54,7 +74,6 @@
                                             <!-- Paragraph -->
                                             <TextBlock
                                                 TextWrapping="Wrap"
-                                                FontSize="18"
                                                 FontFamily="Maiandra GD"
                                             >
                                                 <!-- Show every split -->

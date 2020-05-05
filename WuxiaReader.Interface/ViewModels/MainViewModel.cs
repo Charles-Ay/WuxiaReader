@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using MaterialDesignThemes.Wpf;
 using WuxiaReader.DataFetcher;
 using WuxiaReader.Interface.Commands;
 using WuxiaReader.Interface.Helpers;
@@ -20,6 +21,7 @@ namespace WuxiaReader.Interface.ViewModels
             LoadChapterCommand = new AsyncCommand<int>(LoadChapter);
             NextChapterCommand = new AsyncCommand(NextChapter);
             PreviousChapterCommand = new AsyncCommand(PreviousChapter);
+            SetBaseTheme = new ActionCommand<IBaseTheme>(SetApplicationBaseTheme);
         }
 
         public BindingList<Chapter> Chapters { get; }
@@ -27,6 +29,7 @@ namespace WuxiaReader.Interface.ViewModels
         public ICommand LoadChapterCommand { get; }
         public ICommand NextChapterCommand { get; }
         public ICommand PreviousChapterCommand { get; }
+        public ICommand SetBaseTheme { get; }
 
         private async Task LoadChapter(int chapterNumber)
         {
@@ -53,6 +56,16 @@ namespace WuxiaReader.Interface.ViewModels
         private async Task PreviousChapter()
         {
             await LoadChapter(--CurrentChapter);
+        }
+
+        private static void SetApplicationBaseTheme(IBaseTheme type)
+        {
+            var paletteHelper = new PaletteHelper();
+
+            var theme = paletteHelper.GetTheme();
+            theme.SetBaseTheme(type);
+            
+            paletteHelper.SetTheme(theme);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
