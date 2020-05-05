@@ -178,10 +178,12 @@ namespace WuxiaReader.DataFetcher
                     splits.Add(new StylizedText(decodedText, isItalic, fontWeight));
                     break;
                 }
-                    
+
                 case "br":
-                    // ignored
+                {
+                    splits.Add(new StylizedText("\n"));
                     break;
+                }
                 
                 default:
                     throw new Exception("Unexpected node in paragraph: " + node.Name);
