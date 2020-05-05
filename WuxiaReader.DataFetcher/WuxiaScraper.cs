@@ -102,7 +102,7 @@ namespace WuxiaReader.DataFetcher
             Debug.Assert(style.IndexOf("font-size", StringComparison.OrdinalIgnoreCase) < 0);
             Debug.Assert(style.IndexOf("font-style", StringComparison.OrdinalIgnoreCase) < 0);
             
-            Console.WriteLine("Node({0}) with InnerText({1}) has style: {2}", node.Name, node.InnerText, style);
+            Console.WriteLine("Node({0}) with InnerText({1}) has Style({2})", node.Name, node.InnerText, style);
         }
         
         private static void ParseParagraph
