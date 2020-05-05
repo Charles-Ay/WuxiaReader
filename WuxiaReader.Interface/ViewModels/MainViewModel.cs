@@ -1,7 +1,9 @@
-using System;
+﻿using System;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using JetBrains.Annotations;
 using MaterialDesignThemes.Wpf;
 using WuxiaReader.DataFetcher;
 using WuxiaReader.Interface.Commands;
@@ -11,8 +13,8 @@ namespace WuxiaReader.Interface.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private const string BaseUrl = "https://www.wuxiaworld.com/novel/overgeared/og-chapter-{0}";
-        public int CurrentChapter { get; set; } = 30;
+        private string _formatUrl = "https://www.wuxiaworld.com/novel/overgeared/og-chapter-{0}";
+        private int _currentChapter = 33;
 
         public MainViewModel()
         {
@@ -31,6 +33,28 @@ namespace WuxiaReader.Interface.ViewModels
         public ICommand PreviousChapterCommand { get; }
         public ICommand SetBaseTheme { get; }
 
+        public int CurrentChapter
+        {
+            get => _currentChapter;
+            set
+            {
+                if (value == _currentChapter) return;
+                _currentChapter = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string FormatUrl
+        {
+            get => _formatUrl;
+            set
+            {
+                if (value == _formatUrl) return;
+                _formatUrl = value;
+                OnPropertyChanged();
+            }
+        }
+
         private async Task LoadChapter(int chapterNumber)
         {
             if (chapterNumber < 1)
@@ -43,7 +67,7 @@ namespace WuxiaReader.Interface.ViewModels
             if (insertIndex >= 0)
                 return;
 
-            var chapter = await WuxiaFetcher.FetchChapter(BaseUrl, chapterNumber);
+            var chapter = await WuxiaFetcher.FetchChapter(FormatUrl, chapterNumber);
             
             Chapters.Insert(~insertIndex, chapter);
         }
@@ -69,5 +93,11 @@ namespace WuxiaReader.Interface.ViewModels
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

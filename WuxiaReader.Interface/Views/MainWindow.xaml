@@ -1,4 +1,4 @@
-﻿<Window x:Class="WuxiaReader.Interface.Views.MainWindow"
+<Window x:Class="WuxiaReader.Interface.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -15,7 +15,7 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}"
+        FontFamily="Candara,Botoni MT,Arial"
         mc:Ignorable="d"
         Title="Wuxia Reader" Width="800" Height="600">
     <Window.DataContext>
@@ -55,6 +55,40 @@
     <ScrollViewer>
         <StackPanel Orientation="Vertical" Margin="10 0">
             
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Label Grid.Row="0" Grid.Column="0"
+                    Content="Font: "
+                />
+                <TextBox Grid.Row="0" Grid.Column="1"
+                    Text="{Binding FontFamily
+                          , RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                />
+                
+                <Label Grid.Row="1" Grid.Column="0" 
+                    Content="Novel Format: "
+                />
+                <TextBox Grid.Row="1" Grid.Column="1"
+                    Text="{Binding FormatUrl}"
+                />
+                
+                <Label Grid.Row="2" Grid.Column="0"
+                    Content="Current Chapter: "
+                />
+                <TextBox Grid.Row="2" Grid.Column="1"
+                    Text="{Binding CurrentChapter}"
+                />
+            </Grid>
+            
             <!-- For every chapter -->
             <ItemsControl ItemsSource="{Binding Chapters}" Margin="10">
                 <ItemsControl.ItemTemplate>
@@ -62,7 +96,7 @@
                         
                         <StackPanel Orientation="Vertical">
                             
-                            <!-- Each chapter element -->
+                            <!-- For each chapter element -->
                             <ItemsControl ItemsSource="{Binding Elements}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate DataType="{x:Type df:ChapterElement}">
@@ -72,14 +106,13 @@
                                         >
                                             
                                             <!-- Paragraph -->
-                                            <TextBlock
-                                                TextWrapping="Wrap"
-                                                FontFamily="Maiandra GD"
-                                            >
+                                            <TextBlock TextWrapping="Wrap">
+                                                
                                                 <!-- Show every split -->
                                                 <i:Interaction.Behaviors>
                                                     <behaviors:StylizedTextBehaviour CurrentChapter="{Binding .}"/>
                                                 </i:Interaction.Behaviors>
+                                                
                                             </TextBlock>
                                             
                                             <Separator 
