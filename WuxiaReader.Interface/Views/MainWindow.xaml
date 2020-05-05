@@ -67,6 +67,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -82,20 +83,29 @@
                     Text="{Binding FontFamily, ElementName=MyWindowName}"
                 />
                 
-                <Label Grid.Row="1" Grid.Column="0" 
+                <Label Grid.Row="1" Grid.Column="0"
+                    FontSize="18"
+                    Content="Font Size: "
+                />
+                <TextBox Grid.Row="1" Grid.Column="1"
+                    FontSize="18"
+                    Text="{Binding FontSize, ElementName=MyWindowName}"
+                />
+                
+                <Label Grid.Row="2" Grid.Column="0" 
                     FontSize="18"
                     Content="Novel Format: "
                 />
-                <TextBox Grid.Row="1" Grid.Column="1"
+                <TextBox Grid.Row="2" Grid.Column="1"
                     FontSize="18"
                     Text="{Binding FormatUrl}"
                 />
                 
-                <Label Grid.Row="2" Grid.Column="0"
+                <Label Grid.Row="3" Grid.Column="0"
                     FontSize="18"
                     Content="Current Chapter: "
                 />
-                <TextBox Grid.Row="2" Grid.Column="1"
+                <TextBox Grid.Row="3" Grid.Column="1"
                     FontSize="18"
                     Text="{Binding CurrentChapter}"
                 />
