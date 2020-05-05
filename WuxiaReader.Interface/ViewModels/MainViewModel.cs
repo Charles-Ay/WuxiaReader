@@ -67,7 +67,8 @@ namespace WuxiaReader.Interface.ViewModels
             if (insertIndex >= 0)
                 return;
 
-            var chapter = await WuxiaFetcher.FetchChapter(FormatUrl, chapterNumber);
+            var url = string.Format(FormatUrl, chapterNumber);
+            var chapter = await WuxiaFetcher.FetchChapter(url, chapterNumber);
             
             Chapters.Insert(~insertIndex, chapter);
         }
