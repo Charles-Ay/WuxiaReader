@@ -74,23 +74,29 @@
                 </Grid.ColumnDefinitions>
                 
                 <Label Grid.Row="0" Grid.Column="0"
+                    FontSize="18"
                     Content="Font: "
                 />
                 <TextBox Grid.Row="0" Grid.Column="1"
+                    FontSize="18"
                     Text="{Binding FontFamily, ElementName=MainWindow}"
                 />
                 
                 <Label Grid.Row="1" Grid.Column="0" 
+                    FontSize="18"
                     Content="Novel Format: "
                 />
                 <TextBox Grid.Row="1" Grid.Column="1"
+                    FontSize="18"
                     Text="{Binding FormatUrl}"
                 />
                 
                 <Label Grid.Row="2" Grid.Column="0"
+                    FontSize="18"
                     Content="Current Chapter: "
                 />
                 <TextBox Grid.Row="2" Grid.Column="1"
+                    FontSize="18"
                     Text="{Binding CurrentChapter}"
                 />
             </Grid>
