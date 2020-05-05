@@ -26,10 +26,10 @@ namespace WuxiaReader.DataFetcher
         {
             return (x, y) switch
             {
+                (Chapter a, Chapter b) => a.Number.CompareTo(b.Number),
                 (null, null) => 0,
                 (_, null) => 1,
-                (null, _) => -1,
-                (Chapter a, Chapter b) => a.Number.CompareTo(b.Number)
+                (null, _) => -1
             };
         }
     }
