@@ -1,5 +1,5 @@
 <Window x:Class="WuxiaReader.Interface.Views.MainWindow"
-        x:Name="MainWindow"
+        x:Name="MyWindowName"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -79,7 +79,7 @@
                 />
                 <TextBox Grid.Row="0" Grid.Column="1"
                     FontSize="18"
-                    Text="{Binding FontFamily, ElementName=MainWindow}"
+                    Text="{Binding FontFamily, ElementName=MyWindowName}"
                 />
                 
                 <Label Grid.Row="1" Grid.Column="0" 
