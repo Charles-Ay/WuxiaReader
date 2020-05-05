@@ -7,13 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ApplicationDefinition Remove="App.xaml" />
-      <ApplicationDefinition Include="Views\App.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </ApplicationDefinition>
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" />
       <PackageReference Include="MaterialDesignThemes" Version="3.1.2-ci1399" />
       <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
