@@ -74,7 +74,11 @@ namespace WuxiaReader.DataFetcher
                         elements[i + 1].HasSpacerAfter ? "(Spacer)" : string.Empty);
                     elements.RemoveAt(i + 1);
                 }
-                current.HasSpacerAfter = false;
+
+                if (current.StylizedSplits.Length == 0)
+                    elements.RemoveAt(i);
+                else
+                    current.HasSpacerAfter = false;
                 break;
             }
         }
