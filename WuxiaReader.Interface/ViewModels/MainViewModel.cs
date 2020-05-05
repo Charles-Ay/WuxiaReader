@@ -11,7 +11,7 @@ using WuxiaReader.Interface.Helpers;
 
 namespace WuxiaReader.Interface.ViewModels
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public sealed class MainViewModel : INotifyPropertyChanged
     {
         private string _formatUrl = "https://www.wuxiaworld.com/novel/overgeared/og-chapter-{0}";
         private int _currentChapter = 33;
@@ -96,7 +96,7 @@ namespace WuxiaReader.Interface.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
