@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -24,6 +24,7 @@ namespace WuxiaReader.Interface.ViewModels
             NextChapterCommand = new AsyncCommand(NextChapter);
             PreviousChapterCommand = new AsyncCommand(PreviousChapter);
             SetBaseTheme = new ActionCommand<IBaseTheme>(SetApplicationBaseTheme);
+            ClearChapters = new ActionCommand(ClearChaptersList);
         }
 
         public BindingList<Chapter> Chapters { get; }
@@ -32,6 +33,7 @@ namespace WuxiaReader.Interface.ViewModels
         public ICommand NextChapterCommand { get; }
         public ICommand PreviousChapterCommand { get; }
         public ICommand SetBaseTheme { get; }
+        public ICommand ClearChapters { get; }
 
         public int CurrentChapter
         {
@@ -91,6 +93,11 @@ namespace WuxiaReader.Interface.ViewModels
             theme.SetBaseTheme(type);
             
             paletteHelper.SetTheme(theme);
+        }
+
+        private void ClearChaptersList()
+        {
+            Chapters.Clear();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

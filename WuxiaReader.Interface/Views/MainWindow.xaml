@@ -41,6 +41,12 @@
         />
         
         <KeyBinding
+            Key="E"
+            Modifiers="Control"
+            Command="{Binding ClearChapters}"
+        />
+        
+        <KeyBinding
             Key="L"
             Command="{Binding SetBaseTheme}"
             CommandParameter="{x:Static materialDesign:Theme.Light}"
