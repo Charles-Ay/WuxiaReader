@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -118,9 +118,9 @@ namespace WuxiaReader.DataFetcher
             var children = node.Children().ToArray();
             foreach (var child in children)
             {
-                Debug.Assert(child.Name != "hr" || children.Length == 1); // Assert hr is the only child
                 if (child.Name == "hr")
                 {
+                    Debug.Assert(children.Length == 1); // Assert hr is the only child
                     elements.Add(new ChapterElement(splits.ToArray(), 10, true));
                     return;
                 }
