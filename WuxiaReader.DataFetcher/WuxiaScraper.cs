@@ -45,6 +45,10 @@ namespace WuxiaReader.DataFetcher
                         elements.Add(new ChapterElement(new StylizedText[0], 10, true));
                         break;
 
+                    case "br":
+                        elements.Add(new ChapterElement(new StylizedText[0], 10));
+                        break;
+                    
                     default:
                         throw new Exception("Unexpected node in #chapter-content: " + baseNode.Name);
                 }
