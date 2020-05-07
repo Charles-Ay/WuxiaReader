@@ -171,6 +171,7 @@ namespace WuxiaReader.DataFetcher
                 
                 case "sup": //TODO: Support sup node
                 case "li": //TODO: Support li node
+                case "ol": //TODO: Support ol node
                 case "span":
                     foreach (var child in node.Children())
                         ParseParagraphElement(splits, child, isItalic, fontWeight);
