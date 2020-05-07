@@ -169,6 +169,7 @@ namespace WuxiaReader.DataFetcher
                         ParseParagraphElement(splits, child, isItalic, 800);
                     break;    
                 
+                case "sup": //TODO: Support sup node
                 case "span":
                     foreach (var child in node.Children())
                         ParseParagraphElement(splits, child, isItalic, fontWeight);
