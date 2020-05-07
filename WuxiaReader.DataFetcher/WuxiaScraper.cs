@@ -35,10 +35,10 @@ namespace WuxiaReader.DataFetcher
                         ParseParagraph(elements, baseNode);
                         break;
                     
-                    case "a":
+                    case "a": //TODO: Support a node
                         // Ignore: Previus and Next chapter buttons
                         Console.WriteLine("Skipped {0} node containing: {1}", 
-                            baseNode.Name, baseNode.InnerText.Replace("\n", "\\n"));
+                            baseNode.Name, baseNode.InnerHtml.Replace("\n", "\\n"));
                         break;
                     
                     case "hr":
