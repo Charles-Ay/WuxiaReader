@@ -45,6 +45,11 @@ namespace WuxiaReader.DataFetcher
                         elements.Add(new ChapterElement(new StylizedText[0], 10, true));
                         break;
 
+                    case "div": //TODO: Support div node
+                        Console.WriteLine("Skipped {0} node containing: {1}", 
+                            baseNode.Name, baseNode.InnerHtml.Replace("\n", "\\n"));
+                        break;
+                    
                     case "br":
                         elements.Add(new ChapterElement(new StylizedText[0], 10));
                         break;
