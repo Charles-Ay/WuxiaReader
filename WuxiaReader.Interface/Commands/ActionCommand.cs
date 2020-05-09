@@ -24,6 +24,11 @@ namespace WuxiaReader.Interface.Commands
             _executeFunction();
         }
 
+        public void UpdateCanExecuteState()
+        {
+            CanExecuteChanged?.Invoke(this, null);
+        }
+
         public event EventHandler CanExecuteChanged;
     }
     
@@ -52,6 +57,11 @@ namespace WuxiaReader.Interface.Commands
                 throw new ArgumentException(nameof(parameter));
             
             _executeFunction(param);
+        }
+
+        public void UpdateCanExecuteState()
+        {
+            CanExecuteChanged?.Invoke(this, null);
         }
 
         public event EventHandler CanExecuteChanged;
