@@ -106,6 +106,7 @@ namespace WuxiaReader.DataFetcher
             if (style == string.Empty)
                 return;
                 
+            Debug.Assert(style.IndexOf("text-align", StringComparison.OrdinalIgnoreCase) < 0);
             Debug.Assert(style.IndexOf("font-weight", StringComparison.OrdinalIgnoreCase) < 0);
             Debug.Assert(style.IndexOf("font-family", StringComparison.OrdinalIgnoreCase) < 0);
             Debug.Assert(style.IndexOf("font-size", StringComparison.OrdinalIgnoreCase) < 0);
