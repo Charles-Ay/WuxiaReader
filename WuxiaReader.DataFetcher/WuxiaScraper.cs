@@ -106,13 +106,13 @@ namespace WuxiaReader.DataFetcher
             if (style == string.Empty)
                 return;
                 
+            Console.WriteLine("Node({0}) with InnerText({1}) has Style({2})", node.Name, node.InnerText, style);
+            
             Debug.Assert(style.IndexOf("text-align", StringComparison.OrdinalIgnoreCase) < 0);
             Debug.Assert(style.IndexOf("font-weight", StringComparison.OrdinalIgnoreCase) < 0);
             Debug.Assert(style.IndexOf("font-family", StringComparison.OrdinalIgnoreCase) < 0);
             Debug.Assert(style.IndexOf("font-size", StringComparison.OrdinalIgnoreCase) < 0);
             Debug.Assert(style.IndexOf("font-style", StringComparison.OrdinalIgnoreCase) < 0);
-            
-            Console.WriteLine("Node({0}) with InnerText({1}) has Style({2})", node.Name, node.InnerText, style);
         }
         
         private static void ParseParagraph
