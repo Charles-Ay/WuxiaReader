@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace WuxiaReader.DataFetcher
+namespace WuxiaReader.Shared
 {
     public class Chapter : INotifyPropertyChanged
     {

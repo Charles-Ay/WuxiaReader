@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using WuxiaReader.Shared;
 
 namespace WuxiaReader.DataFetcher
 {

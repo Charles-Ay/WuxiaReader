@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Documents;
 using Microsoft.Xaml.Behaviors;
-using WuxiaReader.DataFetcher;
+using WuxiaReader.Shared;
 
 namespace WuxiaReader.Interface.Behaviors
 {
@@ -23,8 +23,8 @@ namespace WuxiaReader.Interface.Behaviors
                 AssociatedObject.Inlines.Add(new Run
                 {
                     Text = split.Content,
-                    FontStyle = split.IsItalic ? FontStyles.Italic : FontStyles.Normal,
-                    FontWeight = FontWeight.FromOpenTypeWeight(split.FontWeight)
+                    FontStyle = split.FontStyle,
+                    FontWeight = split.FontWeight
                 });
             }
         }

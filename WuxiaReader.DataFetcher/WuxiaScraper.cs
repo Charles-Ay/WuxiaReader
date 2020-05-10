@@ -6,8 +6,10 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web;
+using System.Windows;
 using Fizzler.Systems.HtmlAgilityPack;
 using HtmlAgilityPack;
+using WuxiaReader.Shared;
 
 namespace WuxiaReader.DataFetcher
 {
@@ -42,7 +44,7 @@ namespace WuxiaReader.DataFetcher
                         break;
                     
                     case "hr":
-                        elements.Add(new ChapterElement(new StylizedText[0], 10, true));
+                        elements.Add(new ChapterElement(new StylizedText[0], 10, TextAlignment.Left, true));
                         break;
 
                     case "div": //TODO: Support div node
@@ -51,7 +53,7 @@ namespace WuxiaReader.DataFetcher
                         break;
                     
                     case "br":
-                        elements.Add(new ChapterElement(new StylizedText[0], 10));
+                        elements.Add(new ChapterElement(new StylizedText[0], 10, TextAlignment.Left));
                         break;
                     
                     default:
@@ -131,22 +133,22 @@ namespace WuxiaReader.DataFetcher
                 if (child.Name == "hr")
                 {
                     Debug.Assert(children.Length == 1); // Assert hr is the only child
-                    elements.Add(new ChapterElement(splits.ToArray(), 10, true));
+                    elements.Add(new ChapterElement(splits.ToArray(), 10, TextAlignment.Left, true));
                     return;
                 }
 
-                ParseParagraphElement(splits, child);
+                ParseParagraphElement(splits, child, FontStyles.Normal, FontWeights.Regular);
             }
                 
-            elements.Add(new ChapterElement(splits.ToArray(), 10));
+            elements.Add(new ChapterElement(splits.ToArray(), 10, TextAlignment.Left));
         }
 
         private static void ParseParagraphElement
         (
             ICollection<StylizedText> splits, 
             HtmlNode node, 
-            bool isItalic = false, 
-            int fontWeight = 400
+            FontStyle style, 
+            FontWeight weight
         )
         {
             AssertNoStyle(node);
@@ -155,19 +157,19 @@ namespace WuxiaReader.DataFetcher
             {
                 case "p":
                     foreach (var child in node.Children())
-                        ParseParagraphElement(splits, child, isItalic, fontWeight);
+                        ParseParagraphElement(splits, child, style, weight);
                     break;
                 
                 case "em":
                 case "i":
                     foreach (var child in node.Children())
-                        ParseParagraphElement(splits, child, true, fontWeight);
+                        ParseParagraphElement(splits, child, FontStyles.Italic, weight);
                     break;
                 
                 case "strong":
                 case "b":
                     foreach (var child in node.Children())
-                        ParseParagraphElement(splits, child, isItalic, 800);
+                        ParseParagraphElement(splits, child, style, FontWeights.Bold);
                     break;    
                 
                 case "sup": //TODO: Support sup node
@@ -175,26 +177,26 @@ namespace WuxiaReader.DataFetcher
                 case "ol": //TODO: Support ol node
                 case "span":
                     foreach (var child in node.Children())
-                        ParseParagraphElement(splits, child, isItalic, fontWeight);
+                        ParseParagraphElement(splits, child, style, weight);
                     break;
 
                 case "#text":
                 {
                     var decodedText = HttpUtility.HtmlDecode(node.InnerText);
-                    splits.Add(new StylizedText(decodedText, isItalic, fontWeight));
+                    splits.Add(new StylizedText(decodedText, style, weight));
                     break;
                 }
 
                 case "a":
                 {
                     var decodedText = HttpUtility.HtmlDecode(node.InnerText);
-                    splits.Add(new StylizedText(decodedText, isItalic, fontWeight));
+                    splits.Add(new StylizedText(decodedText, style, weight));
                     break;
                 }
 
                 case "br":
                 {
-                    splits.Add(new StylizedText("\n"));
+                    splits.Add(new StylizedText("\n", style, weight));
                     break;
                 }
                 

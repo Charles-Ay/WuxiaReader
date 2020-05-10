@@ -6,6 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:df="clr-namespace:WuxiaReader.DataFetcher;assembly=WuxiaReader.DataFetcher"
+        xmlns:shared="clr-namespace:WuxiaReader.Shared;assembly=WuxiaReader.Shared"
         xmlns:behaviors="clr-namespace:WuxiaReader.Interface.Behaviors"
         xmlns:viewModels="clr-namespace:WuxiaReader.Interface.ViewModels"
         xmlns:converters="clr-namespace:WuxiaReader.Interface.Converters"
@@ -114,17 +115,17 @@
             <!-- For every chapter -->
             <ItemsControl ItemsSource="{Binding Chapters}" Margin="10">
                 <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type df:Chapter}">
+                    <DataTemplate DataType="{x:Type shared:Chapter}">
                         
                         <StackPanel Orientation="Vertical">
                             
                             <!-- For each chapter element -->
                             <ItemsControl ItemsSource="{Binding Elements}">
                                 <ItemsControl.ItemTemplate>
-                                    <DataTemplate DataType="{x:Type df:ChapterElement}">
+                                    <DataTemplate DataType="{x:Type shared:ChapterElement}">
                                         <StackPanel 
                                             Orientation="Vertical" 
-                                            Margin="{Binding Spacing, Converter={converters:BottomMarginConverter}}"
+                                            Margin="{Binding Margin}"
                                         >
                                             
                                             <!-- Paragraph -->

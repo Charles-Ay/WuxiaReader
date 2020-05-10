@@ -1,19 +1,20 @@
 ﻿using System.ComponentModel;
+using System.Windows;
 
-namespace WuxiaReader.DataFetcher
+namespace WuxiaReader.Shared
 {
     public class StylizedText : INotifyPropertyChanged
     {
-        public StylizedText(string content, bool isItalic = false, int fontWeight = 400)
+        public StylizedText(string content, FontStyle fontStyle, FontWeight fontWeight)
         {
             Content = content;
-            IsItalic = isItalic;
+            FontStyle = fontStyle;
             FontWeight = fontWeight;
         }
 
         public string Content { get; }
-        public bool IsItalic { get; }
-        public int FontWeight { get; }
+        public FontStyle FontStyle { get; }
+        public FontWeight FontWeight { get; }
         
         public event PropertyChangedEventHandler PropertyChanged;
     }

@@ -8,6 +8,7 @@ using MaterialDesignThemes.Wpf;
 using WuxiaReader.DataFetcher;
 using WuxiaReader.Interface.Commands;
 using WuxiaReader.Interface.Helpers;
+using WuxiaReader.Shared;
 
 namespace WuxiaReader.Interface.ViewModels
 {
