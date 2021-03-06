@@ -33,6 +33,9 @@ namespace WuxiaReader.DataFetcher
             {
                 switch (baseNode.Name)
                 {
+                    case "script":
+                        break;
+                    
                     case "p":
                         ParseParagraph(elements, baseNode);
                         break;
